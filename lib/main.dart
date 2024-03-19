@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:food_app/screens/auth/login_screen.dart';
-import 'package:food_app/screens/auth/register_screen.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_app/screens/auth/welcome_screen.dart';
-import 'package:food_app/themes/theme_provider.dart';
-import 'package:provider/provider.dart';
+import 'package:food_app/themes/dark_theme.dart';
+import 'package:food_app/themes/light_theme.dart';
+import 'blocs/theme_bloc/theme_bloc.dart';
 
 void main() {
-  runApp(ChangeNotifierProvider(
-      create: (context) => ThemeProvider(), child: const MyApp()));
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -16,12 +15,19 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Food App',
-      theme: Provider.of<ThemeProvider>(context).themeData,
-      home: WelcomeScreen(
-        isLoginScreen:true
+    return BlocProvider(
+      create: (context) => ThemeBloc(),
+      child: BlocBuilder<ThemeBloc, ThemeMode>(
+        builder: (context, state) {
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            title: 'Food App',
+            theme: lightMode,
+            darkTheme: darkMode,
+            themeMode: state,
+            home: const WelcomeScreen(),
+          );
+        },
       ),
     );
   }

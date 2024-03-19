@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_app/components/common_button.dart';
 import 'package:food_app/components/common_text_field.dart';
+import 'package:food_app/screens/home_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   final Function()? onTap;
@@ -59,7 +60,11 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   CommonButton(
                       onTap: () {
-                        if (_formkey.currentState!.validate()) {}
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => HomeScreen(),
+                            ));
                       },
                       text: 'Sign In'),
                   const SizedBox(
@@ -78,7 +83,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         width: 5,
                       ),
                       GestureDetector(
-                        onTap:widget.onTap,
+                        onTap: widget.onTap,
                         child: Text(
                           'Register Now',
                           style: TextStyle(
