@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_app/components/drawer_tile.dart';
-import 'package:food_app/screens/login_screen.dart';
-import 'package:food_app/screens/settings_screen.dart';
+import 'package:food_app/modules/auth/views/login_screen.dart';
+import 'package:food_app/modules/settings_screen.dart';
 
-import '../blocs/theme_bloc/theme_bloc.dart';
 
 class AppDrawer extends StatelessWidget {
   const AppDrawer({super.key});
@@ -45,10 +43,7 @@ class AppDrawer extends StatelessWidget {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => BlocProvider.value(
-                      value: context.read<ThemeBloc>(),
-                      child: const SettingsScreen(),
-                    ),
+                    builder: (context) => const SettingsScreen(),
                   ));
             },
           ),
@@ -60,7 +55,7 @@ class AppDrawer extends StatelessWidget {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => LoginScreen(onTap: (){}),
+                    builder: (context) => const LoginScreen(),
                   ));
             },
           )

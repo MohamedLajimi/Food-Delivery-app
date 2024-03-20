@@ -15,7 +15,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.background,
-        title: const Text('Settings'),
+        title: const Text(
+          'Settings',
+        ),
         centerTitle: true,
       ),
       body: Padding(
@@ -31,6 +33,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 'Dark Mode',
                 style: TextStyle(fontSize: 18),
               ),
+              tileColor: Theme.of(context).colorScheme.secondary,
+              shape: BeveledRectangleBorder(
+                  borderRadius: BorderRadius.circular(8)),
             )
           ],
         ),
